@@ -4,20 +4,14 @@
 	<body>
 		<div class="content">
 			{{ partial "head.html" . }}
-			
 			<main class="list">
-				<div class="site-description">
-					{{- if isset .Site.Params "subtitle" -}}
-					<p>{{ .Site.Params.Subtitle | markdownify }}</p>
-					{{- end -}}
-				</div>
-				{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
-				{{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) }}
-				{{ range $paginator.Pages }}
-				<section class="list-item">
-					<h1 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h1>
+				{{ $disp := .Site.Params.homeDisplay }}
+				<h1> Recent Projects </h1>
+				{{ range first $disp (where .Site.RegularPages "Type" "in" "projects") }}
+				<section class="list-item"  style="margin-left: 50px">
+					<h2 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h2>
 					<time>{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
-					<br><div class="description">
+					<br><div class="description" style="font-size:0.8em">
 						{{ if isset .Params "description" }}
 						{{ .Description }}
 						{{ else }}
@@ -27,7 +21,27 @@
 					<a href="{{ .RelPermalink }}">Read more ⟶</a>
 				</section>
 				{{ end }}
-				{{ template "partials/paginator.html" . }}
+				<div style="margin-top:50px">
+					<a href="/projects"> View All Projects → </a>
+				</div>
+				<h1> Recent Writings </h1>
+				{{ range first $disp (where .Site.RegularPages "Type" "in" "writings") }}
+				<section class="list-item"  style="margin-left: 50px">
+					<h2 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h2>
+					<time>{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
+					<br><div class="description" style="font-size:0.8em">
+						{{ if isset .Params "description" }}
+						{{ .Description }}
+						{{ else }}
+						{{ .Summary }}&hellip;
+						{{ end }}
+					</div>
+					<a href="{{ .RelPermalink }}">Read more ⟶</a>
+				</section>
+				{{ end }}
+				<div style="margin-top:50px">
+					<a href="/writings"> View All Writings → </a>
+				</div>
 			</main>
 			{{ partial "footer.html" . }}
 		</div>
