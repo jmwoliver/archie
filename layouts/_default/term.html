@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ if isset .Data "Term" }}
-<h1>Entries tagged - "{{ .Data.Term }}"</h1>
+<h1>Tag - "{{ .Data.Term }}"</h1>
 {{ else }}
 <h1 class="page-title">All articles</h1>
 {{ end }}
@@ -14,4 +14,7 @@
 		{{- end -}}
 	{{- end -}}
 </ul>
+<div style="margin-top:50px">
+	<a href="/tags"> View All Tags → </a>
+</div>
 {{ end }}

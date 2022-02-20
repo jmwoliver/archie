@@ -9,13 +9,12 @@
 				<h1> Recent Projects </h1>
 				{{ range first $disp (where .Site.RegularPages "Type" "in" "projects") }}
 				<section class="list-item"  style="margin-left: 50px">
-					<h2 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h2>
-					<time>{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
-					<br><div class="description" style="font-size:0.8em">
+					<h2 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a><time> {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time></h2>
+					<div class="description" style="font-size:0.8em">
 						{{ if isset .Params "description" }}
 						{{ .Description }}
 						{{ else }}
-						{{ .Summary }}&hellip;
+						{{ .Summary | truncate 200 }}
 						{{ end }}
 					</div>
 					<a href="{{ .RelPermalink }}">Read more ⟶</a>
@@ -27,13 +26,12 @@
 				<h1> Recent Writings </h1>
 				{{ range first $disp (where .Site.RegularPages "Type" "in" "writings") }}
 				<section class="list-item"  style="margin-left: 50px">
-					<h2 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h2>
-					<time>{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
-					<br><div class="description" style="font-size:0.8em">
+					<h2 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a><time> {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time></h2>
+					<div class="description" style="font-size:0.8em">
 						{{ if isset .Params "description" }}
 						{{ .Description }}
 						{{ else }}
-						{{ .Summary }}&hellip;
+						{{ .Summary | truncate 200 }}
 						{{ end }}
 					</div>
 					<a href="{{ .RelPermalink }}">Read more ⟶</a>

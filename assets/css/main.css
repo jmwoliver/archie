@@ -142,10 +142,12 @@ header {
 
 header .main {
   font-size: 2em;
+  margin-bottom: 0.5em;
 }
 h1 {
   font-size: 2rem;
   margin-top: 2em;
+  line-height: 1em;
 }
 h2, h3, h4, h5, h6 {
   font-size: 1rem;
